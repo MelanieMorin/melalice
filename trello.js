@@ -10,4 +10,24 @@ jQuery(document).ready(function($){
       s4() + '-' + s4() + s4() + s4();
   }
   
+	var generate = (task) => {
+    	var template = $('#template').html();
+
+    	var rendered = Mustache.render(template,{name: task.name, user: task.user, desc: task.description, id: task.id});
+    	$('ul#' + task.type).append(rendered);
+
+    // console.log(task)
+  }
+
+  var tasks = [];
+
+  var storage = localStorage.getItem("tasks");
+  if(storage != null) {
+    // JSON.parse va transformer le string en tableau d'objets
+    tasks = JSON.parse(storage)
+    tasks.forEach((task) => {
+      generate(task);
+    });
+  }
 });
+
