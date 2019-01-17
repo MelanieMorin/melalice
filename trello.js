@@ -14,7 +14,7 @@ jQuery(document).ready(function($){
   var storage = localStorage.getItem("tasks");
   if(storage != null) {
     // JSON.parse va transformer le string en tableau d'objets
-    tasks = JSON.parse(storage)
+    tasks = JSON.parse(storage);
     tasks.forEach((task) => {
       generate(task);
     });
@@ -22,20 +22,20 @@ jQuery(document).ready(function($){
 
   // afficher formulaire
   $("#btn_add").click(function(){
-    $("#form-ajouter").slideToggle(400)
+    $("#form-ajouter").slideToggle(400);
   });
 
   // Voir si le formulaire est valide en lui passant un tableau d'objet.
   //Save en localStorage
   $("#form-ajouter").validate({
     invalidHandler: (event, validator) => {
-      console.log("error")
+      console.log("error");
       //si le formulaire n'est pas valide
-      $("#error").show()
+      $("#error").show();
     },
     submitHandler: () => {
       //si le formulaire est valide
-      $("#error").hide()
+      $("#error").hide();
 
       var task = {
         id: guid(),
@@ -45,7 +45,7 @@ jQuery(document).ready(function($){
         type: $("select[name='type']").val(),
       };
 
-      tasks.push(task)
+      tasks.push(task);
 
       $("#form-ajouter")[0].reset();
 
@@ -61,12 +61,12 @@ jQuery(document).ready(function($){
 
   //Afficher l'id lié au bouton modifier
   $("ul").on('click', '.edit', function(event){
-    $id = $(this).closest('.list-group-item').data("id")
+    $id = $(this).closest('.list-group-item').data("id");
     $("#modal-form").modal();
 
     tasks.forEach((task) => {
       if($id == task.id){
-        // console.log('dkjbhjsqb')
+        // console.log('dkjbhjsqb');
         // $("#modal-form .modal-body").attr("data-id", task.id),
         $("#modal-form input[name='name']").val(task.name),
         $("#modal-form input[name='user']").val(task.user),
@@ -79,32 +79,32 @@ jQuery(document).ready(function($){
 
   $("#modal-form form").validate({
     invalidHandler: (event, validator) => {
-      console.log("error")
+      console.log("error");
     },
     submitHandler: () => {
       tasks.forEach((task) => {
         if($id == task.id){
 
-          task.name = $("#modal-form input[name='name']").val(),
-          task.user = $("#modal-form input[name='user']").val(),
-          task.description = $("#modal-form textarea[name='description']").val(),
-          task.type = $("#modal-form select[name='type']").val()
+          task.name = $("#modal-form input[name='name']").val();
+          task.user = $("#modal-form input[name='user']").val();
+          task.description = $("#modal-form textarea[name='description']").val();
+          task.type = $("#modal-form select[name='type']").val();
 
           //On actualise le nom de la tâche au niveau du DOM
-          $("li.list-group-item[data-id="+task.id+"]").remove()
-          generate(task)
+          $("li.list-group-item[data-id="+task.id+"]").remove();
+          generate(task);
 
           //Persiter au niveau du localstorage
           localStorage.setItem("tasks", JSON.stringify(tasks));
 
           // On cache le modal
-          $("#modal-form").modal('hide')
+          $("#modal-form").modal('hide');
 
           swal(
             'Succès !',
             'Vous venez de modifier la tâche.',
             'success'
-          )
+          );
         }
       });
     }
@@ -170,7 +170,7 @@ jQuery(document).ready(function($){
           'Supprimé !',
           'Vous venez de supprimer la tâche.',
           'success'
-        )
+        );
       }
     })
   });
