@@ -11,3 +11,11 @@ jQuery(document).ready(function($){
   }
   
 });
+var generate = (task) => {
+    var template = $('#template').html();
+
+    var rendered = Mustache.render(template,{name: task.name, user: task.user, desc: task.description, id: task.id});
+    $('ul#' + task.type).append(rendered);
+
+    // console.log(task)
+  }
