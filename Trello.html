@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title></title>
-		<meta charset="utf-8">
+    <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
@@ -46,8 +46,203 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col">
 
+					<form class="form-card" id="form-ajouter" style="display: none;">
+						<h2 style="padding-top:20px;">Formulaire d'ajout de tâche</h2>
+						<div class="row">
+							<div class="col-sm-4">
+								<input type="text" class="form-control" placeholder="Nom" id="name" name="name" required minLength="2">
+							</div>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" placeholder="Utilisateur" id="user" name="user" required>
+							</div>
+							<div class="col-sm-4">
+								<div class="dropdown">
+									<select id="type" class="form-control" name="type">
+									  <option value="todo" selected>Todo</option>
+									  <option value="doing">Doing</option>
+									  <option value="done">Done</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-sm-12" style="padding-top:20px">
+								<textarea class="form-control" name="description" rows="8" cols="80" id="description" required></textarea>
+							</div>
+							<div class="col-sm-12" style="padding-top:20px;">
+								<button id="add_form" class="btn btn-primary">
+									Ajouter
+								</button>
+							</div>
+						</div>
+					</form>
+
+					<div class="row">
+						<div class="col-sm-4">
+							<h2 style="padding-top:2em;">Todo</h2>
+							<div class="card" style="background: #f2dede">
+								<div class="card-blolck">
+									<ul class="list-group list-group-flush" id="todo">
+
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-4">
+							<h2 style="padding-top:2em;">Doing</h2>
+							<div class="card" style="background: #faebcc">
+								<div class="card-blolck">
+									<ul class="list-group list-group-flush" id="doing">
+
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-4">
+							<h2 style="padding-top:2em;">Done</h2>
+							<div class="card" style="background: #c0f9c2">
+								<div class="card-blolck">
+									<ul class="list-group list-group-flush" id="done">
+
+									</ul>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			<div id="task-view"></div>
+			<div class="modal" tabindex="-1" role="dialog" id="modal-form">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="row">
+									<div class="col-sm-4">
+										<input type="text" class="form-control" placeholder="Nom" id="name" name="name" required minLength="2">
+									</div>
+									<div class="col-sm-4">
+										<input type="text" class="form-control" placeholder="Utilisateur" id="user" name="user" required>
+									</div>
+									<div class="col-sm-4">
+										<div class="dropdown">
+											<select id="type" class="form-control" name="type">
+												<option value="todo" selected>Todo</option>
+												<option value="doing">Doing</option>
+												<option value="done">Done</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-12" style="padding-top:20px">
+										<textarea class="form-control" name="description" rows="8" cols="80" id="description" required></textarea>
+									</div>
+									<div class="col-sm-12" style="padding-top:20px;">
+										<button id="add_form" class="btn btn-primary">
+											Modifier
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 
+		<script id="template" type="x-tmpl-mustache">
+			<li class="card list-group-item" data-id={{id}}>
+				<div class="row">
+					<div class="col-lg-12">
+						<label class="form-check-label">
+	    			  <input class="form-check-input" type="checkbox">
+							{{name}}
+							{{user}}
+						</label>
+						<p>{{desc}}</p>
+					</div>
+					<div class="col-lg-12">
+						<button class="btn btn-primary view">
+							Voir
+						</button>
+						<button class="btn btn-primary edit">
+							Modifier
+						</button>
+						<button class="btn btn-primary remove">
+							Supprimer
+						</button>
+					</div>
+				</div>
+			</li>
+		</script>
+
+		<script id="template-modal" type="x-tmpl-mustache">
+			<div class="modal" tabindex="-1" role="dialog" id="modal">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">{{name}} <span>{{user}}</span></h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <p>Description : {{desc}}</p>
+							<div class="comment">
+								<h6>Ajouter un commentaire</h6>
+								<div class="" style="">
+									<textarea class="form-control" name="desc" rows="8" cols="80" id="commentaire" required></textarea>
+									<div style="padding-top: 10px;">
+										<input type="text" class="form-control" placeholder="Utilisateur" id="usercomment" name="usercomment" required>
+									</div>
+								</div>
+								<button class="btn btn-secondary" style="margin-top:1em;" id="add-comments">Ajouter</button>
+							</div>
+			      </div>
+						<div class="modal-comment-content">
+
+						</div>
+			    </div>
+			  </div>
+			</div>
+		</script>
+
+		<script id="template-comment" type="x-tmpl-mustache">
+			<div class="container">
+				<div class="" id="modal_comment">
+				<div class="row">
+					<div class="col">
+						<h6>Commentaires</h6>
+						<div class="content-comment">
+							{{commentaire}}
+							</div>
+						</div>
+					</div>
+					<div class="info-comment">
+						<ul style="padding: 10px 0 0;">
+							<li>{{user}}</li>
+							<li>{{date}}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</script>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script><script src="https://limonte.github.io/sweetalert2/dist/sweetalert2.all.min.js"></script>
+		<script src="trello.js"></script>
+		<script src="comments.js"></script>
 	</body>
 </html>
