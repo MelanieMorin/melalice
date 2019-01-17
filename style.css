@@ -30,6 +30,15 @@ body{
 }
 
 .block-card{
-  margin-top: 30px;
+  /* margin-top: 30px; */
   padding: 10px;
+}
+/* .block-card h2{
+  color: #4886FF;
+  font-family: 'Pacifico', cursive;
+  margin-bottom: 30px;
+} */
+
+.btn{
+  margin-bottom: 10px;
 }
