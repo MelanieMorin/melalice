@@ -25,8 +25,29 @@
 	<body style="padding-top:50px;">
 		<div class="container">
 
-		<h1 style="">Todo List</h1>
+			<h1 style="">Todo List</h1>
+			<div class="row">
+				<div class="col">
+					<button class="btn btn-primary" id="btn_add">
+						Ajouter une tâche
+					</button>
+					<button class="btn btn-danger" id="btn_remove">
+						Supprimer les tâches
+					</button>
+					<button class="btn btn-info" id="btn_info">
+						Cocher / Décocher les cases
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="alert alert-danger" id="error" style="display: none; margin-top:20px;">
+						Vous devez saisir tous les champs.
+					</div>
+				</div>
+			</div>
 
-		<!--TODO-->
+		</div>
+
 	</body>
 </html>
