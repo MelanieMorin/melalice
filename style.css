@@ -33,12 +33,49 @@ body{
   /* margin-top: 30px; */
   padding: 10px;
 }
-/* .block-card h2{
-  color: #4886FF;
-  font-family: 'Pacifico', cursive;
-  margin-bottom: 30px;
-} */
+.block-card h2{
+  /* color: #4886FF; */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  list-style-type: circle;
+  margin: 0;
+}
+
+.block-card .card{
+  border: 1px solid #F6F7FB;
+  border-radius: 8px;
+  padding: 0;
+}
 
 .btn{
   margin-bottom: 10px;
+}
+
+.line{
+  height: 4px;
+  width: 50px;
+  border-radius: 8px;
+  margin: 0 15px 0;
+}
+
+.btn-action{
+  width: 100%;
+}
+.btn-primary{
+  background-color: #4886FF;
+  border: none;
+}
+.btn-action:last-child{
+  margin: 0;
+}
+
+.content-label{
+  padding: 0 35px;
+}
+
+.content-title{
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 30px;
 }
