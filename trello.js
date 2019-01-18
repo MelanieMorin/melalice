@@ -19,6 +19,46 @@ jQuery(document).ready(function($){
       generate(task);
     });
   }
+
+  // afficher formulaire
+  $("#btn_add").click(function(){
+    $("#form-ajouter").slideToggle(400)
+  });
+
+  // Voir si le formulaire est valide en lui passant un tableau d'objet.
+  //Save en localStorage
+  $("#form-ajouter").validate({
+    invalidHandler: (event, validator) => {
+      console.log("error")
+      //si le formulaire n'est pas valide
+      $("#error").show()
+    },
+    submitHandler: () => {
+      //si le formulaire est valide
+      $("#error").hide()
+
+      var task = {
+        id: guid(),
+        name: $("input[name='name']").val(),
+        user: $("input[name='user']").val(),
+        description: $("textarea[name='description']").val(),
+        type: $("select[name='type']").val(),
+      };
+
+      tasks.push(task)
+
+      $("#form-ajouter")[0].reset();
+
+      // Ajouter stringify pour mettre en string le tableau
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+
+      // Appel de notre var pour lire les éléments de Mustache
+      generate(task);
+
+      return false;
+    }
+  });
+  
 });
 
   
