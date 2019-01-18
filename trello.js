@@ -148,7 +148,7 @@ jQuery(document).ready(function($){
       confirmButtonText: 'Oui',
       cancelButtonText: 'Annuler'
     }).then((result) => {
-      if (result.value) {
+      if (result == true) {
 
         var i = 0;
 
