@@ -38,7 +38,6 @@ jQuery(document).ready(function($){
     comments.push(comment)
     // $("#add-comments")[0].reset();
 
-    console.log(comment)
 
     // Ajouter stringify pour mettre en string le tableau
     localStorage.setItem("comments", JSON.stringify(comments));

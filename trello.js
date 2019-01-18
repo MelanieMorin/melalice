@@ -6,7 +6,6 @@ jQuery(document).ready(function($){
     var rendered = Mustache.render(template,{name: task.name, user: task.user, desc: task.description, id: task.id});
     $('ul#' + task.type).append(rendered);
 
-    // console.log(task)
   }
 
   var tasks = [];
@@ -29,7 +28,6 @@ jQuery(document).ready(function($){
   //Save en localStorage
   $("#form-ajouter").validate({
     invalidHandler: (event, validator) => {
-      console.log("error");
       //si le formulaire n'est pas valide
       $("#error").show();
     },
@@ -66,7 +64,6 @@ jQuery(document).ready(function($){
 
     tasks.forEach((task) => {
       if($id == task.id){
-        // console.log('dkjbhjsqb');
         // $("#modal-form .modal-body").attr("data-id", task.id),
         $("#modal-form input[name='name']").val(task.name),
         $("#modal-form input[name='user']").val(task.user),
@@ -79,7 +76,6 @@ jQuery(document).ready(function($){
 
   $("#modal-form form").validate({
     invalidHandler: (event, validator) => {
-      console.log("error");
     },
     submitHandler: () => {
       tasks.forEach((task) => {
