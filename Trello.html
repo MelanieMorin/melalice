@@ -5,6 +5,8 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 
 		<style media="screen">
 			.card{
@@ -22,111 +24,37 @@
 			}
 		</style>
 	</head>
-	<body style="padding-top:50px;">
-		<div class="container">
-
-			<h1 style="">Todo List</h1>
-			<div class="row">
-				<div class="col">
-					<button class="btn btn-primary" id="btn_add">
-						Ajouter une tâche
-					</button>
-					<button class="btn btn-danger" id="btn_remove">
-						Supprimer les tâches
-					</button>
-					<button class="btn btn-info" id="btn_info">
-						Cocher / Décocher les cases
-					</button>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="alert alert-danger" id="error" style="display: none; margin-top:20px;">
-						Vous devez saisir tous les champs.
+	<body>
+		<header class="containerHead">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p>Trello</p>
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col">
+		</header>
 
-					<form class="form-card" id="form-ajouter" style="display: none;">
-						<h2 style="padding-top:20px;">Formulaire d'ajout de tâche</h2>
-						<div class="row">
-							<div class="col-sm-4">
-								<input type="text" class="form-control" placeholder="Nom" id="name" name="name" required minLength="2">
-							</div>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" placeholder="Utilisateur" id="user" name="user" required>
-							</div>
-							<div class="col-sm-4">
-								<div class="dropdown">
-									<select id="type" class="form-control" name="type">
-									  <option value="todo" selected>Todo</option>
-									  <option value="doing">Doing</option>
-									  <option value="done">Done</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-sm-12" style="padding-top:20px">
-								<textarea class="form-control" name="description" rows="8" cols="80" id="description" required></textarea>
-							</div>
-							<div class="col-sm-12" style="padding-top:20px;">
-								<button id="add_form" class="btn btn-primary">
-									Ajouter
-								</button>
-							</div>
-						</div>
-					</form>
-
-					<div class="row">
-						<div class="col-sm-4">
-							<h2 style="padding-top:2em;">Todo</h2>
-							<div class="card" style="background: #f2dede">
-								<div class="card-blolck">
-									<ul class="list-group list-group-flush" id="todo">
-
-									</ul>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-4">
-							<h2 style="padding-top:2em;">Doing</h2>
-							<div class="card" style="background: #faebcc">
-								<div class="card-blolck">
-									<ul class="list-group list-group-flush" id="doing">
-
-									</ul>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-4">
-							<h2 style="padding-top:2em;">Done</h2>
-							<div class="card" style="background: #c0f9c2">
-								<div class="card-blolck">
-									<ul class="list-group list-group-flush" id="done">
-
-									</ul>
-								</div>
-							</div>
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-			<div id="task-view"></div>
-			<div class="modal" tabindex="-1" role="dialog" id="modal-form">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
+		<main class="containerMain">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3">
+						<div class="">
+							<button class="btn btn-primary" id="btn_add">
+								Ajouter une tâche
+							</button>
+							<button class="btn btn-danger" id="btn_remove">
+								Supprimer les tâches
+							</button>
+							<button class="btn btn-info" id="btn_info">
+								Cocher / Décocher les cases
 							</button>
 						</div>
-						<div class="modal-body">
-							<form>
+					</div>
+					<div class="col-lg-9">
+						<div class="block">
+							<form class="form-card" id="form-ajouter" style="display: none;">
+								<h2 style="padding-top:20px;">Formulaire d'ajout de tâche</h2>
 								<div class="row">
 									<div class="col-sm-4">
 										<input type="text" class="form-control" placeholder="Nom" id="name" name="name" required minLength="2">
@@ -148,16 +76,116 @@
 									</div>
 									<div class="col-sm-12" style="padding-top:20px;">
 										<button id="add_form" class="btn btn-primary">
-											Modifier
+											Ajouter
 										</button>
 									</div>
 								</div>
 							</form>
 						</div>
+
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="block block-card">
+									<h2>Todo</h2>
+									<div class="card" style="background: #f2dede">
+										<div class="card-blolck">
+											<ul class="list-group list-group-flush" id="todo">
+
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-sm-4">
+								<div class="block block-card">
+									<h2>Doing</h2>
+									<div class="card" style="background: #faebcc">
+										<div class="card-blolck">
+											<ul class="list-group list-group-flush" id="doing">
+
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-sm-4">
+								<div class="block block-card">
+									<h2>Done</h2>
+									<div class="card" style="background: #c0f9c2">
+										<div class="card-blolck">
+											<ul class="list-group list-group-flush" id="done">
+
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+				<!-- <div>
+					<div class="row">
+						<div class="col">
+							<button class="btn btn-primary" id="btn_add">
+								Ajouter une tâche
+							</button>
+							<button class="btn btn-danger" id="btn_remove">
+								Supprimer les tâches
+							</button>
+							<button class="btn btn-info" id="btn_info">
+								Cocher / Décocher les cases
+							</button>
+						</div>
+					</div>
+				</div> -->
+
+				<div id="task-view"></div>
+				<div class="modal" tabindex="-1" role="dialog" id="modal-form">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form>
+									<div class="row">
+										<div class="col-sm-4">
+											<input type="text" class="form-control" placeholder="Nom" id="name" name="name" required minLength="2">
+										</div>
+										<div class="col-sm-4">
+											<input type="text" class="form-control" placeholder="Utilisateur" id="user" name="user" required>
+										</div>
+										<div class="col-sm-4">
+											<div class="dropdown">
+												<select id="type" class="form-control" name="type">
+													<option value="todo" selected>Todo</option>
+													<option value="doing">Doing</option>
+													<option value="done">Done</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-sm-12" style="padding-top:20px">
+											<textarea class="form-control" name="description" rows="8" cols="80" id="description" required></textarea>
+										</div>
+										<div class="col-sm-12" style="padding-top:20px;">
+											<button id="add_form" class="btn btn-primary">
+												Modifier
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</main>
 
 		<script id="template" type="x-tmpl-mustache">
 			<li class="card list-group-item" data-id={{id}}>
@@ -241,7 +269,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script><script src="https://limonte.github.io/sweetalert2/dist/sweetalert2.all.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
 		<script src="trello.js"></script>
 		<script src="comments.js"></script>
 	</body>

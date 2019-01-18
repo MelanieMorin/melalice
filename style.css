@@ -1,0 +1,44 @@
+body{
+  background-color: #F6F7FB;
+}
+
+.containerHead{
+  background-color: white;
+  border-bottom: 1px solid #F4F4F4;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.containerHead p{
+  color: #4886FF;
+  font-family: 'Pacifico', cursive;
+  margin: 0;
+}
+
+.containerMain{
+  padding: 30px 0;
+}
+
+.block{
+  background-color: white;
+  border-radius: 8px;
+}
+
+.form-card{
+  padding: 30px;
+  margin-top: 10px;
+}
+
+.block-card{
+  /* margin-top: 30px; */
+  padding: 10px;
+}
+/* .block-card h2{
+  color: #4886FF;
+  font-family: 'Pacifico', cursive;
+  margin-bottom: 30px;
+} */
+
+.btn{
+  margin-bottom: 10px;
+}
